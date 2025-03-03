@@ -67,7 +67,6 @@
 
 <script>
     let timeLeft = 10;
-    let clickCount = 0;
     const logo = document.getElementById("logo");
 
     function retry() {
@@ -90,23 +89,15 @@
     }
     setInterval(updateCountdown, 1000);
 
-    // 讓 Logo 變成互動小遊戲
+    // 讓 Logo 可點擊移動
     function moveLogo() {
-        if (clickCount < 5) {
-            const maxX = window.innerWidth - 120;
-            const maxY = window.innerHeight - 180; // 避免跑到文字區塊
-            const newX = Math.random() * maxX;
-            const newY = Math.random() * (maxY - 100) + 50; // 避免跑到最底部
+        const maxX = window.innerWidth - 120;
+        const maxY = window.innerHeight - 180; // 避免跑到文字區塊
+        const newX = Math.random() * maxX;
+        const newY = Math.random() * (maxY - 100) + 50; // 避免跑到最底部
 
-            logo.style.left = `${newX}px`;
-            logo.style.top = `${newY}px`;
-
-            clickCount++;
-            if (clickCount === 5) {
-                document.getElementById("message").innerText = "系統修復完成！";
-                setTimeout(retry, 1000);
-            }
-        }
+        logo.style.left = `${newX}px`;
+        logo.style.top = `${newY}px`;
     }
 
     logo.addEventListener("click", moveLogo);
